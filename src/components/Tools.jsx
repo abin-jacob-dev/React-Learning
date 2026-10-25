@@ -7,6 +7,7 @@ class Tools extends React.Component {
         const {
             children,
             onAction,
+            onAdd,
             labelValue
         } = this.props
         const onlyChild = React.Children.only(children)
@@ -19,7 +20,7 @@ class Tools extends React.Component {
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>
-                    <AddNew/>
+                    <AddNew onAdd={onAdd} />
                 </div>
                 {children}
                 <div className='list-footer'>Total {count} items</div>

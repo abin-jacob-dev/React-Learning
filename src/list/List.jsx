@@ -52,6 +52,11 @@ class List extends React.Component {
             activeState: arg
         })
     }
+    handleAdd = (item) => {
+        this.setState((prevState) => ({
+            data: [...prevState.data, item]
+        }));
+    };
     render() {
         const {
             data,
@@ -70,8 +75,8 @@ class List extends React.Component {
             return false
         })
         return (
-            <Tools labelValue={activeState} onAction={this.onListChange}>
-                
+            <Tools labelValue={activeState} onAdd={this.handleAdd} onAction={this.onListChange}>
+
                 <SimpleList onLabelClick={(this.handleLabelClick)} data={newList} onAction={this.handleDelete} />
             </Tools>
         )
