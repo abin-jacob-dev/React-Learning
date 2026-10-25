@@ -3,6 +3,7 @@ import ListItem from './ListItem'
 import Tools from '../components/Tools'
 import SimpleList from './SimpleList'
 
+
 const arr = [
     {
         id: 1,
@@ -46,6 +47,16 @@ class List extends React.Component {
         })
 
     }
+    handleLabelClick = (arg) => {
+        this.setState({
+            activeState: arg
+        })
+    }
+    handleAdd = (item) => {
+        this.setState((prevState) => ({
+            data: [...prevState.data, item]
+        }));
+    };
     render() {
         const {
             data,
@@ -64,8 +75,9 @@ class List extends React.Component {
             return false
         })
         return (
-            <Tools onAction={this.onListChange}>
-                <SimpleList data={newList} onAction={this.handleDelete} />
+            <Tools labelValue={activeState} onAdd={this.handleAdd} onAction={this.onListChange}>
+
+                <SimpleList onLabelClick={(this.handleLabelClick)} data={newList} onAction={this.handleDelete} />
             </Tools>
         )
     }
