@@ -6,7 +6,8 @@ function ListItem({
   title,
   descr,
   isActive,
-  onDelete
+  onDelete,
+  onLabelClick
 }) {
 
   return (
@@ -17,9 +18,7 @@ function ListItem({
       </div>
       <div className="list-descr">{descr}</div>
       <div className="list-label">
-        <Label onAction={(() => {
-          console.log('Parent Clicked')
-        })} isActive={isActive} />
+        <Label onAction={onLabelClick} isActive={isActive} />
 
       </div>
     </div>
