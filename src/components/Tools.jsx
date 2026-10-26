@@ -3,11 +3,13 @@ import './Tools.css'
 import AddNew from './AddNew'
 
 class Tools extends React.Component {
+
     render() {
         const {
             children,
             onAction,
             onAdd,
+            onRefresh,
             labelValue
         } = this.props
         const onlyChild = React.Children.only(children)
@@ -21,6 +23,7 @@ class Tools extends React.Component {
                         <option value="inactive">Inactive</option>
                     </select>
                     <AddNew onAdd={onAdd} />
+                    <button onClick={onRefresh}>Refresh</button>
                 </div>
                 {children}
                 <div className='list-footer'>Total {count} items</div>

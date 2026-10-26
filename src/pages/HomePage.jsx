@@ -1,38 +1,42 @@
 import React from 'react'
-import ListItem from './ListItem'
 import Tools from '../components/Tools'
-import SimpleList from './SimpleList'
+import SimpleList from '../list/SimpleList'
 
 
-const arr = [
-    {
-        id: 1,
-        title: "Appointment for October",
-        descr: "The patient is reschduled to october",
-        isActive: false
-    }
-    , {
-        id: 2,
-        title: "Appointment for November",
-        descr: "The patient is reschduled to November",
-        isActive: true
-    }
-    , {
-        id: 3,
-        title: "Appointment for December",
-        descr: "The patient is reschduled to December",
-        isActive: false
-    }
 
-]
-class List extends React.Component {
+class HomePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: arr,
-            activeState: 'all'
+            data: [],
+            activeState: 'all',
+            message: ''
         }
     }
+    componentDidMount() {
+        console.log('ComponentDidMounted')
+        fetch('/data.json')
+            .then((data) => {
+                return data.json()
+            }).then((data) => {
+                console.log(data)
+                this.setState({
+                    data: data
+                })
+            })
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log("componentDidUpdate");
+        if (prevState.message !== this.state.message) {
+            this.setState({
+                message: 'Message'
+            })
+        }
+    }
+    componentWillUnmount() {
+        console.log('Component will Unmount')
+    }
+
     onListChange = (e) => {
         const value = e.target.value
         this.setState({ activeState: value })
@@ -57,6 +61,16 @@ class List extends React.Component {
             data: [...prevState.data, item]
         }));
     };
+    handleRefresh = () => {
+        console.log('Refresh');
+        fetch("/data2.json").then((data) => {
+            return data.json()
+        }).then((data) => {
+            this.setState({
+                data: data
+            })
+        })
+    }
     render() {
         const {
             data,
@@ -75,7 +89,7 @@ class List extends React.Component {
             return false
         })
         return (
-            <Tools labelValue={activeState} onAdd={this.handleAdd} onAction={this.onListChange}>
+            <Tools labelValue={activeState} onRefresh={this.handleRefresh} onAdd={this.handleAdd} onAction={this.onListChange}>
 
                 <SimpleList onLabelClick={(this.handleLabelClick)} data={newList} onAction={this.handleDelete} />
             </Tools>
@@ -84,4 +98,4 @@ class List extends React.Component {
 }
 
 
-export default List
+export default HomePage
