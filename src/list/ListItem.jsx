@@ -1,4 +1,4 @@
-import { createContext, createElement, StrictMode } from "react";
+import { createContext, createElement, StrictMode, useEffect } from "react";
 import Label from "./Label";
 import './ListItem.css'
 
@@ -9,7 +9,10 @@ function ListItem({
   onDelete,
   onLabelClick
 }) {
-
+  useEffect(()=>{
+    console.log('Title : ',title);
+    
+  })
   return (
     <div className="list-item">
       <div className="list-title">
