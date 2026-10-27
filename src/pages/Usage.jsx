@@ -1,8 +1,17 @@
-import react, { useState } from 'react'
+import react, { useState, useEffect } from 'react'
 import './Usage.css'
 function Usage() {
     const [value, setValue] = useState(0)
     const [color, setColor] = useState('white')
+    
+    useEffect(() => {
+        console.log('effect')
+        return () => {
+            console.log('clean up ');
+
+        }
+    }, [])
+
     return (
         <div className='usage'>
             <div className='usage-item' style={{ background: color }}>
