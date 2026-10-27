@@ -1,7 +1,28 @@
-.label-name{
+.list-label-item {
     background-color: green;
     color: white;
     padding: 3px;
     margin: 3px;
     border-radius: 2px;
+}
+
+.list-label-item-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background: white;
+    border-radius: 2px;
+    padding: 5px 10px;
+    box-shadow: 2px 3px 10px 0px #ababab;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.hide-tooltip {
+    visibility: hidden;
 }
