@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Tools from '../components/Tools'
 import SimpleList from '../list/SimpleList'
-
+import { MyProvider, MyNewContext } from "./MyContext";
 
 
 class HomePage extends React.Component {
@@ -10,7 +10,8 @@ class HomePage extends React.Component {
         this.state = {
             data: [],
             activeState: 'all',
-            message: ''
+            message: '',
+            showLabel: true
         }
     }
     componentDidMount() {
@@ -71,6 +72,13 @@ class HomePage extends React.Component {
             })
         })
     }
+    handleshowLabel = (e) => {
+        this.setState({
+            showLabel: e.target.checked
+        })
+        console.log(e.target.checked);
+
+    }
     render() {
         const {
             data,
@@ -89,13 +97,27 @@ class HomePage extends React.Component {
             return false
         })
         return (
-            <Tools labelValue={activeState} onRefresh={this.handleRefresh} onAdd={this.handleAdd} onAction={this.onListChange}>
+            <div>
 
-                <SimpleList onLabelClick={(this.handleLabelClick)} data={newList} onAction={this.handleDelete} />
-            </Tools>
+                <input checked={this.state.showLabel} onClick={this.handleshowLabel} type="checkbox" />
+                <label >Show Label</label>
+                <MyNewContext.Provider value={100}>
+
+                    <MyProvider.Provider value={this.state.showLabel}>
+                        <Tools labelValue={activeState} onRefresh={this.handleRefresh} onAdd={this.handleAdd} onAction={this.onListChange}>
+
+                            <SimpleList onLabelClick={(this.handleLabelClick)} data={newList} onAction={this.handleDelete} />
+                        </Tools>
+                    </MyProvider.Provider>
+                </MyNewContext.Provider>
+            </div>
         )
     }
 }
 
+export {
+    MyProvider,
+    MyNewContext
+}
 
 export default HomePage
