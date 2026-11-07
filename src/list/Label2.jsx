@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyProvider, MyNewContext } from "../pages/HomePage";
+import { MyProvider, MyNewContext } from "../pages/MyContext";
 
 class Label2 extends React.Component {
     render() {
@@ -7,41 +7,38 @@ class Label2 extends React.Component {
         const style = props.isActive
             ? { background: 'green' }
             : { background: 'orange' };
+        console.log(this.context);
         return (
-            <MyNewContext.Consumer>
-                {(val2) => {
-                    console.log(val2)
-                    return (<MyProvider.Consumer>
-                        {
-                            (val) => {
-                                if (val === false) {
-                                    return null
-                                }
-                                return (
-                                    <span
-                                        onClick={() => {
-                                            props.onAction(
-                                                props.isActive ? 'active' : 'inactive'
-                                            );
-                                        }}
-                                        style={style}
-                                        className="list-label-item"
-                                    >
-                                        {props.isActive ? 'Active' : 'Inactive'}
-                                    </span>
-                                )
-                            }
+
+            < MyProvider.Consumer >
+                {
+                    (val) => {
+                        if (val === false) {
+                            return null
                         }
+                        return (
+                            <span
+                                onClick={() => {
+                                    props.onAction(
+                                        props.isActive ? 'active' : 'inactive'
+                                    );
+                                }}
+                                style={style}
+                                className="list-label-item"
+                            >
+                                {props.isActive ? 'Active' : 'Inactive'}
+                            </span>
+                        )
+                    }
+                }
 
-                    </MyProvider.Consumer>)
-                }}
+            </MyProvider.Consumer>
 
-
-            </MyNewContext.Consumer>
 
 
         )
     }
 
 }
+Label2.contextType = MyNewContext
 export default Label2

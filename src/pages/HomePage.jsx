@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
 import Tools from '../components/Tools'
 import SimpleList from '../list/SimpleList'
+import { MyProvider, MyNewContext } from "./MyContext";
 
-const MyProvider = React.createContext()
-const MyNewContext = React.createContext(500)
 
 class HomePage extends React.Component {
     constructor(props) {
