@@ -2,6 +2,7 @@ import React from 'react'
 import { MyProvider, MyNewContext } from "../pages/MyContext";
 
 class Label2 extends React.Component {
+    static contextType = MyNewContext
     render() {
         const props = this.props
         const style = props.isActive
@@ -40,5 +41,5 @@ class Label2 extends React.Component {
     }
 
 }
-Label2.contextType = MyNewContext
+
 export default Label2
