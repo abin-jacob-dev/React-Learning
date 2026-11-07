@@ -1,6 +1,8 @@
-import { createContext, createElement, StrictMode, useEffect } from "react";
-import Label from "./Label";
+import { createContext, createElement, StrictMode, useEffect, }from "react";
+import Label2 from "./Label2";
 import './ListItem.css'
+
+import React from "react";
 
 function ListItem({
   title,
@@ -21,7 +23,7 @@ function ListItem({
       </div>
       <div className="list-descr">{descr}</div>
       <div className="list-label">
-        <Label onAction={onLabelClick} isActive={isActive} />
+        <Label2 onAction={onLabelClick} isActive={isActive} />
 
       </div>
     </div>

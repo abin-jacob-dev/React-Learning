@@ -102,7 +102,7 @@ class HomePage extends React.Component {
 
                 <input checked={this.state.showLabel} onClick={this.handleshowLabel} type="checkbox" />
                 <label >Show Label</label>
-                {/* <MyNewContext.Provider value={100}> */}
+                <MyNewContext.Provider value={100}>
 
                     <MyProvider.Provider value={this.state.showLabel}>
                         <Tools labelValue={activeState} onRefresh={this.handleRefresh} onAdd={this.handleAdd} onAction={this.onListChange}>
@@ -110,7 +110,7 @@ class HomePage extends React.Component {
                             <SimpleList onLabelClick={(this.handleLabelClick)} data={newList} onAction={this.handleDelete} />
                         </Tools>
                     </MyProvider.Provider>
-                {/* </MyNewContext.Provider> */}
+                </MyNewContext.Provider>
             </div>
         )
     }
